@@ -56,6 +56,8 @@ pwd
 >/c/Users/username
 ```
 * 初期設定
+  * AWS Access Key ID、AWS Secret Access Key に先ほど発行した値をそれぞれコピペで入力・Enter
+  * Default region name、Default output formatはそれぞれ以下の通り入力しました
 ```bash
 aws configure
 >AWS Access Key ID [None]: AKI**************
