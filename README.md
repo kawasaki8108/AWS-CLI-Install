@@ -8,7 +8,7 @@ Windows環境でpipによるAWS CLIのインストール方法のメモです。
 ## 参考記事
 * （公式）[Python と pip を使用した Windows での AWS CLI バージョン 1 のインストール、更新、アンインストール](https://docs.aws.amazon.com/ja_jp/cli/v1/userguide/install-windows.html#awscli-install-windows-pip)
 * [【VSCode + Git Bash】Windows に Node.js や AWS CLI の環境を構築する方法](https://blog.css-net.co.jp/entry/dev-environment-windows#2-3-1-AWS-CLI-%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)
-  >こちらの記事では後述の環境変数への追加はしていなくて、VScodeを再起動するだけでawsコマンドが有効になっていたようです。
+  >環境変数への追加はしていなくて、VScodeを再起動するだけでawsコマンドが有効になるようです。
 
 ## 前提
 * Python：3.12.0
@@ -30,12 +30,7 @@ python.exe -m pip install --upgrade pip
 ```bash
 pip install awscli --upgrade --user
 ```
-* aws cliのPATHを通す
-  * 「username」のところはご自身のユーザー名で。
-  * `setx`は永続的な変更を与えます。`set`だと今回のみのセッションだけの話になるみたいなので。
-```bash
-setx PATH "%PATH%;C:\Users\username\AppData\Roaming\Python\Python312\Scripts"
-```
+ここでいったんVScode（ターミナル）を再起動
 
 * aws cliのインストール確認
 ```bash
@@ -66,7 +61,7 @@ aws configure
 >AWS Access Key ID [None]: AKI**************
 >AWS Secret Access Key [None]: **************
 >Default region name [None]: ap-northeast-1
->>Default output format [None]: json
+>Default output format [None]: json
 ```
 * `aws configure`したディレクトリで.awsフォルダが生成されるのでいちおう中身確認
 ```bash
@@ -88,6 +83,15 @@ ls .aws
   aws_access_key_id = AKI**************
   aws_secret_access_key = **************
   ```
+* 以下のコマンドで、自分のアカウントが取得できるか確認
+```bash
+aws sts get-caller-identity
+>{
+    "UserId": "A*****************",
+    "Account": "14XXXXXXXXXX",
+    "Arn": "arn:aws:iam::14XXXXXXXXXX:user/kaxxxxxxxxxx"
+  }
+```
 
 
 以上です。背景に記載のTerraformの利用までは別途メモを残します。
