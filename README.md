@@ -95,6 +95,22 @@ aws sts get-caller-identity
   }
 ```
 
+#### Terraformの動作確認
+S3バケットを作ってコンソールで確認してみる
+>（注意）`s3://`の後ろはバケットの名前なので好きに入力ください。ただ、よくある名前だと重複問題？ではじかれるので、独自性の高い名前で。
+* S3バケット作成
+```bash
+aws s3 mb s3://tf-240102test1
+```
+* コンソール画面で確認
+![S3バケットコンソール確認](AWSCLIで作ったS3バケットコンソール確認.png)
 
-以上です。背景に記載のTerraformの利用までは別途メモを残します。
+* S3バケット削除(確認したら不要なので)
+```bash
+aws s3 rb s3://tf-240102test1 --force
+>remove_bucket: tf-240102test1
+```
 
+以上です。背景に記載のTerraformの利用までは別リポジトリとして以下の通りメモを残します。
+* [Terraformのローカルへのインストール方法のメモ](https://github.com/kawasaki8108/Terraform_Install)
+* [CloudFormationで構築した環境をTerraformで構築する](https://github.com/kawasaki8108/tf-raisetech-lec10cfn)
